@@ -1,5 +1,16 @@
 // Javascript File
 
+// Initialize Firebase
+var config = {
+apiKey: "AIzaSyBim-qGyBvHpOsps5wmZ8yQw90neUoXbLc",
+authDomain: "project1-53d91.firebaseapp.com",
+databaseURL: "https://project1-53d91.firebaseio.com",
+projectId: "project1-53d91",
+storageBucket: "project1-53d91.appspot.com",
+messagingSenderId: "115745091238"
+};
+firebase.initializeApp(config);
+
 // The latitude and longitude of your business / place
 var position = [27.1959739, 78.02423269999997];
 
