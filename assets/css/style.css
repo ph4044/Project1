@@ -1,0 +1,30 @@
+#googlemaps { 
+  height: 100%; 
+  width: 100%; 
+  position:absolute; 
+  top: 0; 
+  left: 0; 
+  z-index: 0; 
+  color: white;
+} 
+
+.solution-header {
+    margin-top: 35px;
+    
+}
+
+#globe-icon {
+    display: block;
+    height: 75px;
+    margin: auto;
+    margin-top: 25px;
+    width: 75px;
+}
+
+.solution {
+  background: rgba(255, 255, 255, 0.8);
+  margin-bottom: 20px;
+  margin-top: 20px;
+  padding: 30px;
+  text-align: center;
+}

@@ -13,47 +13,61 @@
 </head>
 
 <body>
-    <div class="container">
-      
-        <div class="jumbotron" style="background-color: rgb(19, 9, 158); color: white;">
-            <h1 class="text-center">Global Retirement Calculator</h1>
-            <br>
-            <h2 class="text-center"><i>Find your perfect retirement spot!</i></h2>
-            <br>
-          </div>
+        <div id="googlemaps"></div>
 
-        <div class="panel panel-info" id="schedule-panel">
-
-            <div class="panel-heading">
-              
-            </div>
-            <div class="panel-body">
+        <script>
+                function myMap() {
+                var mapProp= {
+                  center:new google.maps.LatLng(51.508742,-0.120850),
+                  zoom:5,
+                };
+                var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+                }
+        </script>
+                
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYxqUSJW8Itb1-52IZ2tyR-jZbfj0rAp8&callback=myMap"></script>
              
-                    <tbody id="schedule">
-                    </tbody>
-                </table>
-            </div>
-        </div>
+           
+        
+        
+                <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <img id="globe-icon" src="assets/images/globe-icon-white-4.jpg" alt="Globe">
+                       
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6 solution">
+                        <div class="solution-header">
+                            <h3 id="description-header">Looking for Retirement Solutions?</h3>
+                            <br>
+                            <h5>Retire abroad with the Global Retirement Calculator!</h5>
+                            <br>
+                        </div>
         <div class="panel-info" id="add-panel">
             <div class="panel-heading">
             </div>
             <div class="panel-body">
                 <form>
                     <div class="form-group">
-                        <label for="name">Total retirement assets $</label>
+                        <label for="name">Total Retirement assets $</label>
                         <input class="form-control" id="trainName" type="text">
                     </div>
                     <div class="form-group">
-                        <label for="destination">Desired retirement Age</label>
+                        <label for="destination">Desired Retirement Age</label>
                         <input class="form-control" id="destination" type="text">
                     </div>
-                    <!-- //submit// -->
+                    
                     <button class="btn btn-info" id="submit-btn" type="submit">Submit</button>
                 </form>
             </div>
         </div>
     </div>
-    <script src="assets/javascript/train.js"></script>
+    <script src="assets/javascript/api.js"></script>
+    <script src="assets/javascript/experiment.js"></script>
+ 
 </body>
 
 </html>
