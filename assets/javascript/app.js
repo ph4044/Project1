@@ -1,41 +1,93 @@
-// Javascript File
-
 // Initialize Firebase
 var config = {
-apiKey: "AIzaSyBim-qGyBvHpOsps5wmZ8yQw90neUoXbLc",
-authDomain: "project1-53d91.firebaseapp.com",
-databaseURL: "https://project1-53d91.firebaseio.com",
-projectId: "project1-53d91",
-storageBucket: "project1-53d91.appspot.com",
-messagingSenderId: "115745091238"
-};
-firebase.initializeApp(config);
-
-// The latitude and longitude of your business / place
-var position = [27.1959739, 78.02423269999997];
-
-function showGoogleMaps() {
-
-    var latLng = new google.maps.LatLng(position[0], position[1]);
-
-    var mapOptions = {
-        zoom: 16, // initialize zoom level - the max value is 21
-        streetViewControl: false, // hide the yellow Street View pegman
-        scaleControl: true, // allow users to zoom the Google Map
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        center: latLng
+    apiKey: "AIzaSyClSH-okXO9m-Sj8UDkWM4yaPz1LY1wmos",
+    authDomain: "retire-trial.firebaseapp.com",
+    databaseURL: "https://retire-trial.firebaseio.com",
+    projectId: "retire-trial",
+    storageBucket: "retire-trial.appspot.com",
+    messagingSenderId: "342348471391"
+  };
+  firebase.initializeApp(config);
+  var database = firebase.database();
+  // Create button for adding a row
+  $("#add-row-btn").on("click", function (event) {
+    event.preventDefault();
+    // Grabs user input
+    var totalAssets = $("#assets-input").val().trim();
+    var incomeInRetirement = $("#income-input").val().trim();
+    var retirementAge = $("#retirement-age-input").val().trim();
+    var targetCity = $("#city-input").val().trim();
+    // Creates local "temporary" object for holding train data
+    var newEntry = {
+      city: targetCity,
+      assets: totalAssets,
+      income: incomeInRetirement,
+      age: retirementAge
     };
+    // Uploads data to the database
+    database.ref().push(newEntry);
+    // Logs everything to console
+    console.log("new city: " + newEntry.city);
+    console.log("new assets: " + newEntry.assets);
+    console.log("new income: " + newEntry.income);
+    console.log("new age: " + newEntry.age);
+    alert("Entry successfully added");
+    // Clears all of the text-boxes
+    $("#assets-input").val("");
+    $("#income-input").val("");
+    $("#retirement-age-input").val("");
+    $("#city-input").val("");
+  });
+  // Create Firebase event for adding train to the database and a row in the html when a user adds an entry
+  database.ref().on("child_added", function (childSnapshot) {
+    // console.log(childSnapshot.val());
+    // Store everything into a variable.
+    var targetCity = childSnapshot.val().city;
+    var totalAssets = parseInt(childSnapshot.val().assets,10);
+    var incomeInRetirement = parseInt(childSnapshot.val().income, 10);
+    var retirementAge = childSnapshot.val().age;
+    var remove = "<button class='glyphicon glyphicon-trash' id=" + key + "></button>"
+    // these are set for the program.  using Atlanta and $50,000 as the minimum base requirement
+  var lifeExpectancy=80;
+  var AtlantaMin=50000;
+  var AtlantaCpiR = 59.6549832654245;
+    var queryURL = "https://www.numbeo.com/api/indices?api_key=gfc0idlc9cvrs2&query=" + targetCity;
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    })
+      .then(function (response) {
+        console.log(response);
+        var targetCityCpiR = response.cpi_and_rent_index;
+        var yearsOfRetirement = lifeExpectancy - retirementAge;
+        console.log(yearsOfRetirement, AtlantaMin, targetCityCpiR, AtlantaCpiR);
+        var youNeed = parseInt(yearsOfRetirement * AtlantaMin * targetCityCpiR / AtlantaCpiR,10);
+        var assetsInRetirement = totalAssets + yearsOfRetirement * incomeInRetirement;
+        // if(youNeed == "NaN"); {youNeed="City Data Not Available"};
+        
+        // Create the new row
+        var newRow = $("<tr>").append(
+          $("<td>").text("$ " + commaSeparateNumber(totalAssets)),
+          $("<td>").text("$ " + commaSeparateNumber(incomeInRetirement)),
+          $("<td>").text(retirementAge),
+          $("<td>").text(targetCity),
+          $("<td>").text("$ " + commaSeparateNumber(assetsInRetirement)),
+          $("<td>").text("$ " + commaSeparateNumber(youNeed)),
+          $("<td>").text("$ " + remove
+        );
+        // Append the new row to the table
+        $("#train-table > tbody").append(newRow);
+      });
+      $(document).on("click", ".glyphicon-trash", deleteRow);
+      function deleteRow() {
+        var deleteKey = $(this).attr("id");
+        //console.log($(this).attr("id"));
 
-    map = new google.maps.Map(document.getElementById('googlemaps'),
-        mapOptions);
-
-    // Show the default red marker at the location
-    marker = new google.maps.Marker({
-        position: latLng,
-        map: map,
-        draggable: false,
-        animation: google.maps.Animation.DROP
-    });
-}
-
-google.maps.event.addDomListener(window, 'load', showGoogleMaps);
+        dataRef.ref().child(deleteKey).remove();
+  });
+  function commaSeparateNumber(val){
+    while (/(\d+)(\d{3})/.test(val.toString())){
+      val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
+    }
+    return val;
+  }

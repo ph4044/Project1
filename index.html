@@ -1,59 +1,103 @@
-
-<!DOCTYPE html>
+DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Trial</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+    <title>Retirement Calculator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="Assets/css/style.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8uif52RrLx8YwlraL_banSZYCEZ3bz-E&callback=myMap"></script>
 </head>
+<div class="container-fluid sticky-top">
+    <div class = "row">
+        <div class="col-xl-2 bg-white"></div>
+        <div class="col-xl-8 px-0">
+            <nav class="navbar navbar-expand-md navbar-light bg-white">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <a class="navbar-brand text-dark logo" href="index.html">Global Retirement Calculator</a>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="dropdown mt-auto mb-auto mx-3">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Global Retirement Calculator
+                            <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                               
+                                <li><a href="#" onclick="scrollGS('#featured-project');return false;">Global Retirement Calculator</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="col-xl-2 bg-white"></div>
+    </div>
+</div>
 
 <body>
-    <div class="container">
-      
-        <div class="jumbotron" style="background-color: rgb(19, 9, 158); color: white;">
-            <h1 class="text-center">Global Retirement Calculator</h1>
-            <br>
-            <h2 class="text-center"><i>Find your perfect retirement spot!</i></h2>
-            <br>
-          </div>
+        <div id="googlemaps"></div>
 
-        <div class="panel panel-info" id="schedule-panel">
-
-            <div class="panel-heading">
-              
-            </div>
-            <div class="panel-body">
-             
-                    <tbody id="schedule">
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        
+                <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <img id="globe-icon" src="Assets/images/globe-icon-white-4.jpg" alt="Globe">
+                       
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6 solution">
+                        <div class="solution-header">
+                            <h3 id="description-header">Looking for Retirement Solutions?</h3>
+                            <br>
+                            <h5>Retire abroad with the Global Retirement Calculator!</h5>
+                            <br>
+                            <h6>Input your retirement age, assets, and desired location below:</h6>
+                            <br>
+                        </div>
         <div class="panel-info" id="add-panel">
             <div class="panel-heading">
             </div>
             <div class="panel-body">
                 <form>
                     <div class="form-group">
-                        <label for="name">Total retirement assets $</label>
+                        <label for="name">Total Retirement assets $</label>
                         <input class="form-control" id="trainName" type="text">
                     </div>
                     <div class="form-group">
-                        <label for="destination">Desired retirement Age</label>
+                        <label for="destination">Desired Retirement Age</label>
                         <input class="form-control" id="destination" type="text">
                     </div>
-                    <!-- //submit// -->
+                    <select>
+                        <option value="Naples, Florida">Naples, Florida</option>
+                        <option value="Arenal, Costa Rica">Arenal, Costa Rica</option>
+                        <option value="Cebu, Philippines">Cebu, Philippines</option>
+                        <option value="Cuenca, Ecquador">Cuenca, Ecquador</option>
+                        <option value="Ubud, Indonesia">Ubud, Indonesia</option>
+                        <option value="Krabi, Thailand">Krabi, Thailand</option>
+                        <option value="Citta Di Castello, Italy">Citta Di Castello, Italy</option>
+                        <option value="Granada, Spain">Granada, Spain</option>
+                        <option value="Phoenix, Arizona">Phoenix, Arizona</option>
+                        <option value="Goa, India">Goa, India</option>
+                      </select>
+                    
                     <button class="btn btn-info" id="submit-btn" type="submit">Submit</button>
                 </form>
             </div>
         </div>
     </div>
-    <script src="assets/javascript/trial.js"></script>
+
+    <script src="Assets/javascript/api.js"></script>
+    <script src="Assets/javascript/app.js"></script>
+ 
 </body>
 
 </html>
