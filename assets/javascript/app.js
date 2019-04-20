@@ -74,8 +74,9 @@ var config = {
           $("<td>").text(targetCity),
           $("<td>").text("$ " + commaSeparateNumber(assetsInRetirement)),
           $("<td>").text("$ " + commaSeparateNumber(youNeed)),
-          $("<td>").text("$ " + remove)),
 
+          $("<td>").text("$ " + remove)
+        );
         // Append the new row to the table
         $("#train-table > tbody").append(newRow);
       });
@@ -89,6 +90,6 @@ var config = {
   function commaSeparateNumber(val){
     while (/(\d+)(\d{3})/.test(val.toString())){
       val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
-    }
+    };
     return val;
-  } 
+  };
