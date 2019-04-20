@@ -1,40 +1,26 @@
 // Initialize Firebase
 var config = {
-  apiKey: "AIzaSyClSH-okXO9m-Sj8UDkWM4yaPz1LY1wmos",
-  authDomain: "retire-trial.firebaseapp.com",
-  databaseURL: "https://retire-trial.firebaseio.com",
-  projectId: "retire-trial",
-  storageBucket: "retire-trial.appspot.com",
-  messagingSenderId: "342348471391"
-};
-firebase.initializeApp(config);
-var database = firebase.database();
-// Create button for adding a row
-$("#add-row-btn").on("click", function (event) {
-  event.preventDefault();
-  // Grabs user input
-  var totalAssets = $("#assets-input").val().trim();
-  var incomeInRetirement = $("#income-input").val().trim();
-  var retirementAge = $("#retirement-age-input").val().trim();
-  var targetCity = $('#city-select :selected').text();
-  // Creates local "temporary" object for holding user data
-  var newEntry = {
-    city: targetCity,
-    assets: totalAssets,
-    income: incomeInRetirement,
-    age: retirementAge
+    apiKey: "AIzaSyClSH-okXO9m-Sj8UDkWM4yaPz1LY1wmos",
+    authDomain: "retire-trial.firebaseapp.com",
+    databaseURL: "https://retire-trial.firebaseio.com",
+    projectId: "retire-trial",
+    storageBucket: "retire-trial.appspot.com",
+    messagingSenderId: "342348471391"
   };
-  
   firebase.initializeApp(config);
   var dataBase = firebase.database();
   // Create button for adding a row
   $("#add-row-btn").on("click", function (event) {
+    console.log("clicked");
     event.preventDefault();
     // Grabs user input
     var totalAssets = $("#assets-input").val().trim();
     var incomeInRetirement = $("#income-input").val().trim();
     var retirementAge = $("#retirement-age-input").val().trim();
-    var targetCity = $("#city-input").val().trim();
+    // var targetCity = $("#city-input").val().trim();
+    var targetCity = $("#city-select :selected").text();
+
+    console.log("targetCity "  + targetCity)
     // Creates local "temporary" object for holding train data
     var newEntry = {
       city: targetCity,
@@ -54,7 +40,7 @@ $("#add-row-btn").on("click", function (event) {
     $("#assets-input").val("");
     $("#income-input").val("");
     $("#retirement-age-input").val("");
-    $("#city-input").val("");
+    // $("#city-input").val("");
   });
   // Create Firebase event for adding train to the database and a row in the html when a user adds an entry
   dataBase.ref().on("child_added", function (childSnapshot) {
@@ -67,7 +53,7 @@ $("#add-row-btn").on("click", function (event) {
     var totalAssets = parseInt(childSnapshot.val().assets,10);
     var incomeInRetirement = parseInt(childSnapshot.val().income, 10);
     var retirementAge = childSnapshot.val().age;
-    var remove = "<button class='glyphicon glyphicon-trash' id=" + key + "></button>";
+    // var remove = "<button class='glyphicon glyphicon-trash' id=" + key + "></button>";
     // these are set for the program.  using Atlanta and $50,000 as the minimum base requirement
   var lifeExpectancy=80;
   var AtlantaMin=50000;
