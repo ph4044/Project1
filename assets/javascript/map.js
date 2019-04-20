@@ -94,17 +94,5 @@ function showGoogleMaps() {
 //     infowindow.open(map, marker);
 // });
 
- // Getting the index of the options in dropdown
-    var selectIndex = $("#city-select")[0].selectedIndex;
-    // 
-    var selectedCity = cityPositionsArr[selectIndex];
-    console.log(selectedCity);
-    // Getting latitude and longitude coordinates of the location selected
-    marker = new google.maps.Marker({
-        position: new google.maps.LatLng(selectedCity.lat, selectedCity.lng),
-        map: map,
-        draggable: false,
-        animation: google.maps.Animation.DROP
-    });
 
 google.maps.event.addDomListener(window, 'load', showGoogleMaps);
