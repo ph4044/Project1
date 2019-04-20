@@ -50,7 +50,11 @@ var config = {
   
   // Create Firebase event for adding train to the database and a row in the html when a user adds an entry
   database.ref().on("child_added", function (childSnapshot) {
+<<<<<<< HEAD
     console.log(childSnapshot);
+=======
+    // console.log(childSnapshot.val());
+>>>>>>> 6d68f3c5e0da88efd95c30f418831141d548f2e4
   
     // Store everything into a variable.
     var targetCity = childSnapshot.val().city;
@@ -102,5 +106,9 @@ var config = {
       val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
     }
     return val;
+<<<<<<< HEAD
   }
 
+=======
+  }
+>>>>>>> 6d68f3c5e0da88efd95c30f418831141d548f2e4
