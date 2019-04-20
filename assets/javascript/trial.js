@@ -1,12 +1,30 @@
 // Initialize Firebase
 var config = {
-    apiKey: "AIzaSyClSH-okXO9m-Sj8UDkWM4yaPz1LY1wmos",
-    authDomain: "retire-trial.firebaseapp.com",
-    databaseURL: "https://retire-trial.firebaseio.com",
-    projectId: "retire-trial",
-    storageBucket: "retire-trial.appspot.com",
-    messagingSenderId: "342348471391"
+  apiKey: "AIzaSyClSH-okXO9m-Sj8UDkWM4yaPz1LY1wmos",
+  authDomain: "retire-trial.firebaseapp.com",
+  databaseURL: "https://retire-trial.firebaseio.com",
+  projectId: "retire-trial",
+  storageBucket: "retire-trial.appspot.com",
+  messagingSenderId: "342348471391"
+};
+firebase.initializeApp(config);
+var database = firebase.database();
+// Create button for adding a row
+$("#add-row-btn").on("click", function (event) {
+  event.preventDefault();
+  // Grabs user input
+  var totalAssets = $("#assets-input").val().trim();
+  var incomeInRetirement = $("#income-input").val().trim();
+  var retirementAge = $("#retirement-age-input").val().trim();
+  var targetCity = $('#city-select :selected').text();
+  // Creates local "temporary" object for holding user data
+  var newEntry = {
+    city: targetCity,
+    assets: totalAssets,
+    income: incomeInRetirement,
+    age: retirementAge
   };
+  
   firebase.initializeApp(config);
   var dataBase = firebase.database();
   // Create button for adding a row
