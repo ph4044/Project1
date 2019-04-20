@@ -1,3 +1,4 @@
+
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyClSH-okXO9m-Sj8UDkWM4yaPz1LY1wmos",
@@ -73,6 +74,7 @@ var config = {
           $("<td>").text(targetCity),
           $("<td>").text("$ " + commaSeparateNumber(assetsInRetirement)),
           $("<td>").text("$ " + commaSeparateNumber(youNeed)),
+
           $("<td>").text("$ " + remove)
         );
         // Append the new row to the table

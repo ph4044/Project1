@@ -24,6 +24,7 @@ $("#add-row-btn").on("click", function (event) {
     income: incomeInRetirement,
     age: retirementAge
   };
+
   // Uploads data to the database
   database.ref().push(newEntry);
   // Logs everything to console
@@ -84,3 +85,5 @@ function commaSeparateNumber(val){
   }
   return val;
 }
+
+

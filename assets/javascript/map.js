@@ -1,3 +1,4 @@
+
 // Hides the Retirement Info on the main page
 $(".user-info").hide();
 
@@ -33,9 +34,7 @@ function showGoogleMaps() {
 
     map = new google.maps.Map(document.getElementById('googlemaps'),
         mapOptions);
-
    
-
     cityPositionsArr.forEach((city) => {
         marker = new google.maps.Marker({
             position: new google.maps.LatLng(city.lat, city.lng),
@@ -70,7 +69,6 @@ function showGoogleMaps() {
 //     $(".col-md-6").hide();
 //     // Hides the globe image from the main page
 //     $("#globe-icon").hide();
-    
 //     // Getting the index of the options in dropdown
 //     var selectIndex = $("#city-select")[0].selectedIndex;
 //     // 
@@ -95,5 +93,18 @@ function showGoogleMaps() {
 //     });
 //     infowindow.open(map, marker);
 // });
+
+ // Getting the index of the options in dropdown
+    var selectIndex = $("#city-select")[0].selectedIndex;
+    // 
+    var selectedCity = cityPositionsArr[selectIndex];
+    console.log(selectedCity);
+    // Getting latitude and longitude coordinates of the location selected
+    marker = new google.maps.Marker({
+        position: new google.maps.LatLng(selectedCity.lat, selectedCity.lng),
+        map: map,
+        draggable: false,
+        animation: google.maps.Animation.DROP
+    });
 
 google.maps.event.addDomListener(window, 'load', showGoogleMaps);
