@@ -16,7 +16,7 @@
     display: block;
     height: 100px;
     margin: auto;
-    margin-top: 25px;
+    margin-top: 20px;
     width: 100px;
 }
 
@@ -28,3 +28,6 @@
   text-align: center;
   border-bottom: grey;
 }
+ #banner {
+   height: 50px;
+ }
