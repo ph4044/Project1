@@ -1,3 +1,8 @@
+html {
+  height: 100%;
+  background-attachment: fixed;
+}
+
 #googlemaps { 
   height: 100%; 
   width: 100%; 
@@ -6,6 +11,7 @@
   left: 0; 
   z-index: 0; 
   color: white;
+  background-attachment: fixed;
 } 
 
 .solution-header {
@@ -17,6 +23,7 @@
     height: 100px;
     margin: auto;
     margin-top: 25px;
+    margin-bottom: 20px;
     width: 100px;
 }
 
@@ -27,4 +34,12 @@
   padding: 20px;
   text-align: center;
   border-bottom: grey;
+}
+
+.card, #line-height {
+  line-height: 1.0;
+}
+
+.transparent {
+  background: rgba(255, 255, 255, 0.65);
 }

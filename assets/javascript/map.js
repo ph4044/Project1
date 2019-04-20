@@ -1,3 +1,6 @@
+// Hides the Retirement Info on the main page
+$(".user-info").hide();
+
 // Array of cities
 let cityPositionsArr = [
     { city: 'NaplesFL', lat: 26.14, lng: -81.79, info: 'Retire in Naples' },
@@ -15,8 +18,6 @@ let cityPositionsArr = [
 
 // The latitude and longitude of your business / place
 var position = [9.08, 8.67];
-
-var contentString = ["I'm showing info!"];
 
 function showGoogleMaps() {
 
@@ -44,6 +45,13 @@ function showGoogleMaps() {
         })
     });
 
+    $("#submit-btn").on("click", function() {
+        // Hides the box on the main page
+        $(".col-md-6").hide();
+        // Shows the Retirement Info on the main page
+        $(".user-info").show();
+    });
+
     // google.maps.event.addListener(marker,'click',function() {
     //     map.setZoom(9);
     //     map.setCenter(marker.getPosition());
@@ -54,38 +62,38 @@ function showGoogleMaps() {
     //     infowindow.open(map, marker);
     //   });
 }
-
-$("#submit-btn").on("click", function() {
-    // Prevents the page from reloading on click
-    event.preventDefault();
-    // Hides the box on the main page
-    $(".col-md-6").hide();
-    // Hides the globe image from the main page
-    $("#globe-icon").hide();
+// ******** For future release ********
+// $("#submit-btn").on("click", function() {
+//     // Prevents the page from reloading on click
+//     event.preventDefault();
+//     // Hides the box on the main page
+//     $(".col-md-6").hide();
+//     // Hides the globe image from the main page
+//     $("#globe-icon").hide();
     
-    // Getting the index of the options in dropdown
-    var selectIndex = $("#city-select")[0].selectedIndex;
-    // 
-    var selectedCity = cityPositionsArr[selectIndex];
-    console.log(selectedCity);
-    // Getting latitude and longitude coordinates of the location selected
-    marker = new google.maps.Marker({
-        position: new google.maps.LatLng(selectedCity.lat, selectedCity.lng),
-        map: map,
-        draggable: false,
-        animation: google.maps.Animation.DROP
-    })
-    // Zooms in and centers the map on set location
-    map.setZoom(9);
-    map.setCenter(marker.getPosition());
-    // Defines what is going to be displayed on the modal that pops up
-    contentString = '<div style="color: black">' + selectedCity.info + '</div>'; 
-    console.log(contentString);
-    // Activates the info window to appear on click
-    infowindow = new google.maps.InfoWindow({
-        content: contentString
-    });
-    infowindow.open(map, marker);
-});
+//     // Getting the index of the options in dropdown
+//     var selectIndex = $("#city-select")[0].selectedIndex;
+//     // 
+//     var selectedCity = cityPositionsArr[selectIndex];
+//     console.log(selectedCity);
+//     // Getting latitude and longitude coordinates of the location selected
+//     marker = new google.maps.Marker({
+//         position: new google.maps.LatLng(selectedCity.lat, selectedCity.lng),
+//         map: map,
+//         draggable: false,
+//         animation: google.maps.Animation.DROP
+//     })
+//     // Zooms in and centers the map on set location
+//     map.setZoom(9);
+//     map.setCenter(marker.getPosition());
+//     // Defines what is going to be displayed on the modal that pops up
+//     contentString = '<div style="color: black">' + selectedCity.info + '</div>'; 
+//     console.log(contentString);
+//     // Activates the info window to appear on click
+//     infowindow = new google.maps.InfoWindow({
+//         content: contentString
+//     });
+//     infowindow.open(map, marker);
+// });
 
 google.maps.event.addDomListener(window, 'load', showGoogleMaps);
