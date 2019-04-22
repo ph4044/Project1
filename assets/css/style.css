@@ -1,3 +1,8 @@
+html {
+  height: 100%;
+  background-attachment: fixed;
+}
+
 #googlemaps { 
   height: 100%; 
   width: 100%; 
@@ -6,6 +11,7 @@
   left: 0; 
   z-index: 0; 
   color: white;
+  background-attachment: fixed;
 } 
 
 .solution-header {
@@ -16,7 +22,10 @@
     display: block;
     height: 100px;
     margin: auto;
+
     margin-top: 25px;
+    margin-bottom: 20px;
+
     width: 100px;
 }
 
@@ -28,3 +37,50 @@
   text-align: center;
   border-bottom: grey;
 }
+
+.card, #line-height {
+  line-height: 1.0;
+}
+
+.transparent {
+  background: rgba(255, 255, 255, 0.65);
+}
+
+#banner {
+   height: 50px;
+ }
+
+ tr{
+   height: 30px;
+ }
+
+td{
+  text-align: center;
+}
+
+thead{
+  text-align: center;
+  font-weight: bold;
+}
+
+.remove-entry{
+  float:0px;
+  color:white;
+  background-color:#17a2b8;
+  height:20px;
+  align-content: center;
+  padding:0;
+  margin: 6px auto;
+  text-align: center;
+  font-size: 12px;
+  width: 62px;
+  /* display: inline-block; */
+  vertical-align: center;
+}
+
+.positive{
+  font-weight: bold;
+  color: green;
+}
+
+

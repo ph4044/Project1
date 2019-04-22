@@ -1,103 +1,177 @@
-DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
 
     <title>Retirement Calculator</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase.js"></script>
+
+    <!-- Firebase Reference -->
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+
+    <!-- Moment.js Reference -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script> -->
+
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Google Map API -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8uif52RrLx8YwlraL_banSZYCEZ3bz-E&callback=myMap"></script>
+
+    <!-- Reset CSS -->
+    <!-- <link rel="stylesheet" type="text/css" href="assets/css/reset.css"> -->
+    <!-- CSS stylesheet -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
+
 <div class="container-fluid sticky-top">
     <div class = "row">
         <div class="col-xl-2 bg-white"></div>
-        <div class="col-xl-8 px-0">
-            <nav class="navbar navbar-expand-md navbar-light bg-white">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <a class="navbar-brand text-dark logo" href="index.html">Global Retirement Calculator</a>
+          <div class="col-xl-8 px-0">
+            <nav class="navbar navbar-expand-sm navbar-light bg-white"id="banner">   
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav ml-auto">
-                        <li class="dropdown mt-auto mb-auto mx-3">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Global Retirement Calculator
-                            <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                               
-                                <li><a href="#" onclick="scrollGS('#featured-project');return false;">Global Retirement Calculator</a></li>
-                            </ul>
-                        </li>
-                    </ul>
+                        <li> <a href="https://travel.state.gov/content/travel/en/international-travel/while-abroad/retirement-abroad.html" target="_blank"> Global Retirement Considerations </a></li>
+                    </ul>   
                 </div>
             </nav>
-        </div>
+          </div>
         <div class="col-xl-2 bg-white"></div>
     </div>
 </div>
 
 <body>
-        <div id="googlemaps"></div>
 
+        <div id="googlemaps"></div>
         
-                <div class="container">
+            <div class="container">
+                <!-- Globe icon set up -->
                 <div class="row">
                     <div class="col-md-12">
                         <img id="globe-icon" src="assets/images/globe-icon-white-4.jpg" alt="Globe">
-                       
                     </div>
                 </div>
+
+                <!-- Info box set up -->
                 <div class="row">
                     <div class="col-md-3"></div>
                     <div class="col-md-6 solution">
                         <div class="solution-header">
                             <h3 id="description-header">Looking for Retirement Solutions?</h3>
-                            <br>
+                            
                             <h5>Retire abroad with the Global Retirement Calculator!</h5>
-                            <br>
-                            <h6>Input your retirement age, assets, and desired location below:</h6>
+                      
                             <br>
                         </div>
-        <div class="panel-info" id="add-panel">
-            <div class="panel-heading">
-            </div>
-            <div class="panel-body">
-                <form>
-                    <div class="form-group">
-                        <label for="name">Total Retirement assets $</label>
-                        <input class="form-control" id="trainName" type="text">
+
+                        <div class="panel-info" id="add-panel">
+                            <div class="panel-heading">
+                            </div>
+                            <div class="panel-body">
+                                <button class="btn btn-info" id="submit-btn" type="submit">Yes!</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="destination">Desired Retirement Age</label>
-                        <input class="form-control" id="destination" type="text">
-                    </div>
-                    <select>
-                        <option value="Naples, Florida">Naples, Florida</option>
-                        <option value="Arenal, Costa Rica">Arenal, Costa Rica</option>
-                        <option value="Cebu, Philippines">Cebu, Philippines</option>
-                        <option value="Cuenca, Ecquador">Cuenca, Ecquador</option>
-                        <option value="Ubud, Indonesia">Ubud, Indonesia</option>
-                        <option value="Krabi, Thailand">Krabi, Thailand</option>
-                        <option value="Citta Di Castello, Italy">Citta Di Castello, Italy</option>
-                        <option value="Granada, Spain">Granada, Spain</option>
-                        <option value="Phoenix, Arizona">Phoenix, Arizona</option>
-                        <option value="Goa, India">Goa, India</option>
-                      </select>
-                    
-                    <button class="btn btn-info" id="submit-btn" type="submit">Submit</button>
-                </form>
+                </div>
             </div>
-        </div>
-    </div>
+
+
+            <!-- User Input and Database info being displayed -->
+            <div class="container user-info">
+                    <!-- <div class="row">
+                        <div class="col-md-10">
+                            <h6>Retire abroad!</h6>
+                            <p class="lead">Retirement info based on your situation!</p>
+                        </div>
+                    </div> -->
+            
+                    <div class="row">
+                        <div class="col-md-12">
+            
+                            <!-- Current User Info-->
+                            <div class="card mb-4 transparent">
+                                <div class="card-header"><h2>Your Retirement Info</h2></div>
+                                <div class="card-body">
+                                    <table class="table table-sm table-hover" id='scenario-table'>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" class='col-xs-8' style="word-wrap:normal">Assets</th>
+                                                <th scope="col" class='col-xs-2' style="word-wrap: normal">Income In<br>Retirement</th>
+                                                <th scope="col" class='col-xs-1' style="word-wrap: normal">Retirement<br>Age</th>
+                                                <th scope="col" class='col-xs-2'>City</th>
+                                                <th scope="col" class='col-xs-2' style="word-wrap: break-word">Retirement<br>Fund</th>
+                                                <th scope="col" class='col-xs-2'>Need</th>
+                                                <!-- <th scope="col" class='col-xs-1'>Remove</th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- Add User Info  -->
+                            <div class="card mb-4 transparent">
+                                <div class="card-header"><h2>Add Info</h2></div>
+                                <div class="card-body">
+            
+                                    <!-- Entry Form -->
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="assets-input">IRA/401k Assets [$]</label>
+                                            <input class="form-control" id="assets-input" type="number" min="0">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="income-input">Average Annual Retirement Income [$]</label>
+                                            <input class="form-control" id="income-input" type="number" min="0">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="retirement-age-input">Desired Retirement Age</label>
+                                            <input class="form-control" id="retirement-age-input" type="number" min="0" max="80">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="city-input">City</label>
+                                            <form>
+                                                <select id="city-select">
+                                                    <option value="Naples, Italy">Naples, Italy</option>
+                                                    <option value="Dubai, United arab Emirates">Dubai, United Arab Emirates</option>
+                                                    <option value="Cebu, Philippines">Cebu, Philippines</option>
+                                                    <option value="Shanghai, China">Shanghai, China</option>
+                                                    <option value="Manchester, United Kingdom">Manchester, United Kingdom</option>
+                                                    <option value="Casablanca, Morocco">Casablanca, Morocco</option>
+                                                    <option value="New Orleans, Louisiana">New Orleans, Louisiana</option>
+                                                    <option value="Granada, Spain">Granada, Spain</option>
+                                                    <option value="Phoenix, Arizona">Phoenix, Arizona</option>
+                                                    <option value="Goa, India">Goa, India</option>
+                                                </select>
+                                            </form>
+                                        </div>
+                                        <!-- <button class="btn btn-primary float-right" id="add-row-btn">Submit</button> -->
+
+                                        <button class="btn btn-primary float-right" id="add-row-btn">Submit</button>
+                                    </form>
+            
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                   
-    <script src="assets/javascript/api.js"></script>
-    <script src="assets/javascript/app.js"></script>
- 
+    <!-- Link to the jQuery library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Javascript files -->
+    <!-- <script src="assets/javascript/api.js"></script> -->
+    <!-- <script src="assets/javascript/app.js"></script> -->
+    <script src="assets/javascript/map.js"></script>
+    <script src="assets/javascript/retire-app.js"></script>
 </body>
 
 </html>
